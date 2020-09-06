@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
   database: 'employee_db'
 });
 
-//Connection test code executes if this file is run
+//Uses above parameters to connect to db
 connection.connect(err => {
   if (err){
     console.error(`Error connecting: ${err.stack}`);
