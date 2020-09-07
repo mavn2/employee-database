@@ -11,6 +11,10 @@ module.exports = {
         value: 'v_employees'
         },
         {
+          name: 'Add Employee',
+          value: 'a_employees'
+        },
+        {
         name: 'View All Roles',
         value: 'v_roles'
         },
