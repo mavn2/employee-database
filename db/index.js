@@ -11,24 +11,38 @@ class DB {
   }
 
   //DB queries encased in functions, to be called as methods on DB object
-  //Returns list of employees
+
+  //Return list of employees
   viewEmployees() {
     return this.connection.query(
       'SELECT * FROM employees;'
     );
   }
 
+  //Add employee
+  //Update employee info
+  //View employees by manager/update manager
+  //Delete employee
+
+  //Return list of roles
   viewRoles() {
     return this.connection.query(
       'SELECT * FROM roles;'
     );
   }
 
+  //Add role
+  //Delete role
+
+  //Return list of departments
   viewDepartments() {
     return this.connection.query(
       'SELECT * FROM departments;'
     );
   }
+
+  //Add department
+  //Delete department
 };
 
 //Exports a new DB object created with the imported connection 
