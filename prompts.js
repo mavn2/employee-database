@@ -25,21 +25,31 @@ module.exports = {
       ]
     }
   ],
-  addEmployee: [
-    {
-      type: 'input',
-      name: 'firstName',
-      message: `What is the employee's first name?`
-    },
-    {
-      type: 'input',
-      name: 'lastName',
-      message: `What is the employee's last name?`
-    },
-    {
-      type: 'list',
-      name: 'manager',
-      choices: []
-    }
-  ]
+
+  addEmployee: function (roleData, employeeData){
+    return [
+      {
+        type: 'input',
+        name: 'firstName',
+        message: `What is the employee's first name?`
+      },
+      {
+        type: 'input',
+        name: 'lastName',
+        message: `What is the employee's last name?`
+      },
+      {
+        type: 'list',
+        message: `What is this employees role?`,
+        name: 'role',
+        choices: roleData
+      },
+      {
+        type: 'list',
+        message: `Who is this employee's manager?`,
+        name: 'manager',
+        choices: employeeData
+      }
+    ]  
+  }
 }

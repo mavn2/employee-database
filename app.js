@@ -7,6 +7,7 @@ const inquirer = require('inquirer');
 const db = require('./db');
 const prompts = require('./prompts');
 const { addEmployee } = require('./db');
+const e = require('express');
 //require ('console.table');
 
 //Runs cli on launch
@@ -14,7 +15,7 @@ mainPrompt();
 
 //Displays main menu
 async function mainPrompt() {
-  //Awaits/selects user input from inquirer menu
+  //Gets/stores user input from inquirer
   const {choice} = await inquirer.prompt(prompts.main)
 
   //Calls function based on user selection
@@ -45,20 +46,38 @@ async function viewAllEmployees() {
 
 //Creates employee based on user input
 async function addNewEmployee(){
-  //Gets compact list of employees
+  //Gets relevant employee/role data
   const employeeList = await db.getEmployeeNames()
+  const roles = await db.viewRoles();
 
-  //Converts returned data for use with inquirer
-  const listData = await employeeList.map( element => {
-    return element = {
-      name: `${element.first_name} ${element.last_name}`,
-      value: element.id
-    }; 
-  });
-
-  console.log(listData);
+  //Converts returned role data for use with inquirer
+  const roleData = await roles.map(
+    element => {
+      return element = {
+        name: `${element.title}`,
+        value: element.id
+      };
+    }
+  );
   
-  //const employee = await db.addEmployee();
+  //Converts returned employee data for use with inquirer
+  const employeeData = await employeeList.map( 
+    element => {
+      return element = {
+        name: `${element.first_name} ${element.last_name}`,
+        value: element.id
+      }; 
+    }
+  );
+  
+  //Adds 'none' option for manager
+  employeeData.unshift({name: 'None', value: null});
+
+  //Gets /stores user input from inquirer
+  const {firstName, secondName, role, manager} = await inquirer.prompt(prompts.addEmployee(roleData, employeeData));
+
+  //Creates employee with above values
+  addEmployee();
 
   mainPrompt();
 };
