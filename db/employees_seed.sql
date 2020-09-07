@@ -6,7 +6,7 @@ VALUES ('Marketing'),('Development');
 
 -- Test role data
 INSERT INTO roles (title, salary, department_id)
-VALUES ('Manager', 60000, 1),('Associate', 40000, 1),('INTERN', 0, 1), ('Lead', 60000, 2), ('Engineer', 45000, 2);
+VALUES ('Manager', 60000, 1),('Associate', 40000, 1),('Intern', 0, 1), ('Lead', 60000, 2), ('Engineer', 45000, 2);
 
 -- Test employee data
 INSERT INTO employees (first_name, last_name, role_id)
