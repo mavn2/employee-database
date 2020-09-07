@@ -15,7 +15,7 @@ mainPrompt();
 //Displays main menu
 async function mainPrompt() {
   //Awaits/selects user input from inquirer menu
-  const {choice} = await inquirer.prompt(prompts.Main)
+  const {choice} = await inquirer.prompt(prompts.main)
 
   //Calls function based on user selection
   switch (choice){
@@ -45,10 +45,20 @@ async function viewAllEmployees() {
 
 //Creates employee based on user input
 async function addNewEmployee(){
-  const employee = await db.addEmployee();
+  //Gets compact list of employees
+  const employeeList = await db.getEmployeeNames()
+
+  //Converts returned data for use with inquirer
+  const listData = await employeeList.map( element => {
+    return element = {
+      name: `${element.first_name} ${element.last_name}`,
+      value: element.id
+    }; 
+  });
+
+  console.log(listData);
   
-  console.log('\n');
-  console.log('Added to database!');
+  //const employee = await db.addEmployee();
 
   mainPrompt();
 };

@@ -24,11 +24,11 @@ class DB {
     return this.connection.query(
       `
       SELECT 
-      first_name, last name
+      first_name, last_name, id
       FROM
       employees
       `
-    )
+    );
   }
 
   //Add employee

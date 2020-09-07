@@ -1,6 +1,6 @@
 //Exports prompts as single object:
 module.exports = {
-  Main: [
+  main: [
     {
       type: 'list',
       name: 'choice',
@@ -25,4 +25,21 @@ module.exports = {
       ]
     }
   ],
+  addEmployee: [
+    {
+      type: 'input',
+      name: 'firstName',
+      message: `What is the employee's first name?`
+    },
+    {
+      type: 'input',
+      name: 'lastName',
+      message: `What is the employee's last name?`
+    },
+    {
+      type: 'list',
+      name: 'manager',
+      choices: []
+    }
+  ]
 }
