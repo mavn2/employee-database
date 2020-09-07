@@ -19,6 +19,18 @@ class DB {
     );
   }
 
+  //Return Employee names only
+  getEmployeeNames() {
+    return this.connection.query(
+      `
+      SELECT 
+      first_name, last name
+      FROM
+      employees
+      `
+    )
+  }
+
   //Add employee
   addEmployee(first, second, role, manager) {
     return this.connection.query(
