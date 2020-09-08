@@ -21,6 +21,10 @@ module.exports = {
         {
         name: 'View All Departments',
         value: 'v_departments'
+        },
+        {
+          name: 'Add Department',
+          value: 'a_departments'
         }
       ]
     }
@@ -59,5 +63,5 @@ module.exports = {
       name: 'name'
     }
   ],
-  
+
 };
