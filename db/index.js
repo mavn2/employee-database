@@ -22,11 +22,11 @@ class DB {
   //Return Employee names and ids
   getEmployees() {
     return this.connection.query(
-      `
+        `
       SELECT 
-      first_name, last_name, id
+        first_name, last_name, id
       FROM
-      employees
+        employees
       `
     );
   }
@@ -34,11 +34,11 @@ class DB {
   //Add employee
   addEmployee(first, second, role, manager) {
     return this.connection.query(
-      `
+        `
       INSERT INTO employees 
-      (first_name, last_name, role_id, manager_id)
+        (first_name, last_name, role_id, manager_id)
       VALUES
-      ('${first}', '${second}', ${role}, ${manager});
+        ('${first}', '${second}', ${role}, ${manager});
       `
     )
   }
@@ -56,18 +56,23 @@ class DB {
   //Return role names and ids
   getRoles() {
     return this.connection.query(
-      'SELECT * FROM roles;'
+        `
+      SELECT
+        title, id
+      FROM 
+        roles;
+      `
     );
   }
 
   //Add role
   addRole(title, salary, department) {
     return this.connection.query(
-      `
+        `
       INSERT INTO roles
-      (title, salary, department_id)
+        (title, salary, department_id)
       VALUES
-      ('${title}', ${salary}, ${department})
+        ('${title}', ${salary}, ${department})
       `
     )
   }
@@ -83,18 +88,23 @@ class DB {
   //Return department names and ids
   getDepartments() {
     return this.connection.query(
-      'SELECT * FROM departments;'
+        `
+      SELECT
+        name, id
+      FROM 
+        departments;
+      `
     );
   }
 
   //Add department
   addDepartment(name) {
     return this.connection.query(
-      `
+        `
       INSERT INTO departments
-      (name)
+        (name)
       VALUES
-      ('${name}')
+        ('${name}')
       `
     );
   }
