@@ -53,7 +53,7 @@ async function viewAllEmployees() {
 //Creates employee based on user input
 async function addNewEmployee(){
   //Gets relevant employee/role data
-  const employeeList = await db.getEmployeeNames()
+  const employees = await db.getEmployeeNames()
   const roles = await db.viewRoles();
 
   //Converts returned data for use with inquirer
@@ -66,7 +66,7 @@ async function addNewEmployee(){
     }
   );
   
-  const employeeData = await employeeList.map( 
+  const employeeData = await employees.map( 
     element => {
       return element = {
         name: `${element.first_name} ${element.last_name}`,
@@ -99,10 +99,16 @@ async function viewAllRoles() {
 
 //Adds new role based on user input
 async function addNewRole(){
-  const departmentData = await db.viewDepartments();
+  const deps = await db.viewDepartments();
+
+  const departmentData = await deps.map(
+    element => element = {
+      name: `${element.name}`,
+      value: element.id
+    }
+  );
 
   const {name, salary, department} = await inquirer.prompt(prompts.addRole(departmentData));
-  console.log(salary, department);
 
   mainPrompt();
 };
@@ -125,5 +131,3 @@ async function addNewDepartment() {
 
   mainPrompt();
 };
-
-
