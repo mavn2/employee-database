@@ -77,7 +77,7 @@ async function addNewEmployee(){
   const {firstName, secondName, role, manager} = await inquirer.prompt(prompts.addEmployee(roleData, employeeData));
 
   //Creates employee with above values
-  addEmployee();
+  db.addEmployee(firstName, secondName, role, manager);
 
   mainPrompt();
 };
