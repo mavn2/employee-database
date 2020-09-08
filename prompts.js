@@ -79,7 +79,7 @@ module.exports = {
         filter: value => {
           var res = ''
           for(i = 0; i < value.length; i++){
-            if(!isNaN(Number(value[i]))){
+            if(!isNaN(Number(value[i])) || value[i] === '.'){
               res += value.slice(i, i+1)
             };
           };
