@@ -51,5 +51,13 @@ module.exports = {
         choices: employeeData
       }
     ];
-  }
+  },
+  addDepartment:  [
+    {
+      type: 'input',
+      message: `What is the department's name?`,
+      name: 'name'
+    }
+  ],
+  
 };
