@@ -70,9 +70,9 @@ class DB {
       INSERT INTO departments
       (name)
       VALUES
-      ${name}
+      ('${name}')
       `
-    )
+    );
   }
   //Delete department
 };
