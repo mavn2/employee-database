@@ -49,7 +49,18 @@ class DB {
   //Return formatted list of roles
   viewRoles(){
     return this.connection.query(
-      'SELECT * FROM roles;'
+        `
+      SELECT 
+        roles.title AS Title,
+        roles.salary AS Salary,
+        departments.name AS Department
+      FROM
+        roles
+      LEFT JOIN
+        departments on roles.department_id = departments.id
+      ORDER BY
+        roles.department_id
+      `
     );
   }
 
@@ -81,7 +92,14 @@ class DB {
   //Return formatted list of departments
   viewDepartments() {
     return this.connection.query(
-      'SELECT * FROM departments;'
+        `
+      SELECT
+        name, id
+      FROM 
+        departments
+      ORDER BY
+        id;
+      `
     );
   }
 
