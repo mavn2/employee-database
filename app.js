@@ -53,8 +53,8 @@ async function viewAllEmployees() {
 //Creates employee based on user input
 async function addNewEmployee(){
   //Gets relevant employee/role data
-  const employees = await db.getEmployeeNames()
-  const roles = await db.viewRoles();
+  const employees = await db.getEmployees()
+  const roles = await db.getRoles();
 
   //Converts returned data for use with inquirer
   const roleData = await roles.map(
@@ -79,10 +79,10 @@ async function addNewEmployee(){
   employeeData.unshift({name: 'None', value: null});
 
   //Passes converted data to function in prompts, gets/stores user input
-  const {firstName, secondName, role, manager} = await inquirer.prompt(prompts.addEmployee(roleData, employeeData));
+  const {firstName, lastName, role, manager} = await inquirer.prompt(prompts.addEmployee(roleData, employeeData));
 
   //Creates employee with above values
-  db.addEmployee(firstName, secondName, role, manager);
+  db.addEmployee(firstName, lastName, role, manager);
 
   mainPrompt();
 };
@@ -99,7 +99,7 @@ async function viewAllRoles() {
 
 //Adds new role based on user input
 async function addNewRole(){
-  const deps = await db.viewDepartments();
+  const deps = await db.getDepartments();
 
   const departmentData = await deps.map(
     element => element = {
@@ -111,7 +111,7 @@ async function addNewRole(){
   const {name, salary, department} = await inquirer.prompt(prompts.addRole(departmentData));
   
   db.addRole(name, salary, department);
-  
+
   mainPrompt();
 };
 

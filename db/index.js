@@ -12,15 +12,15 @@ class DB {
 
   //DB queries encased in functions, to be called as methods on DB object
 
-  //Return list of employees
+  //Return formatted list of employees
   viewEmployees() {
     return this.connection.query(
       'SELECT * FROM employees;'
     );
   }
 
-  //Return Employee names only
-  getEmployeeNames() {
+  //Return Employee names and ids
+  getEmployees() {
     return this.connection.query(
       `
       SELECT 
@@ -46,8 +46,15 @@ class DB {
   //View employees by manager/update manager
   //Delete employee
 
-  //Return list of roles
-  viewRoles() {
+  //Return formatted list of roles
+  viewRoles(){
+    return this.connection.query(
+      'SELECT * FROM roles;'
+    );
+  }
+
+  //Return role names and ids
+  getRoles() {
     return this.connection.query(
       'SELECT * FROM roles;'
     );
@@ -66,8 +73,15 @@ class DB {
   }
   //Delete role
 
-  //Return list of departments
+  //Return formatted list of departments
   viewDepartments() {
+    return this.connection.query(
+      'SELECT * FROM departments;'
+    );
+  }
+
+  //Return department names and ids
+  getDepartments() {
     return this.connection.query(
       'SELECT * FROM departments;'
     );
