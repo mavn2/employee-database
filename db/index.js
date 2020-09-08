@@ -64,6 +64,16 @@ class DB {
   }
 
   //Add department
+  addDepartment(name) {
+    return this.connection.query(
+      `
+      INSERT INTO departments
+      (name)
+      VALUES
+      ${name}
+      `
+    )
+  }
   //Delete department
 };
 
