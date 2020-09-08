@@ -54,6 +54,16 @@ class DB {
   }
 
   //Add role
+  addRole(title, salary, department) {
+    return this.connection.query(
+      `
+      INSERT INTO roles
+      (title, salary, department_id)
+      VALUES
+      ('${title}', ${salary}, ${department})
+      `
+    )
+  }
   //Delete role
 
   //Return list of departments
