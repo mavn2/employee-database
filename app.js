@@ -31,6 +31,9 @@ async function mainPrompt() {
       break;
     case 'v_departments':
       viewAllDepartments()
+      break;
+    case 'a_departments':
+      addNewDepartment();
   };
 };
 
@@ -50,7 +53,7 @@ async function addNewEmployee(){
   const employeeList = await db.getEmployeeNames()
   const roles = await db.viewRoles();
 
-  //Converts returned role data for use with inquirer
+  //Converts returned data for use with inquirer
   const roleData = await roles.map(
     element => {
       return element = {
@@ -60,7 +63,6 @@ async function addNewEmployee(){
     }
   );
   
-  //Converts returned employee data for use with inquirer
   const employeeData = await employeeList.map( 
     element => {
       return element = {
@@ -73,7 +75,7 @@ async function addNewEmployee(){
   //Adds 'none' option for manager
   employeeData.unshift({name: 'None', value: null});
 
-  //Gets /stores user input from inquirer
+  //Passes converted data to function in prompts, gets/stores user input
   const {firstName, secondName, role, manager} = await inquirer.prompt(prompts.addEmployee(roleData, employeeData));
 
   //Creates employee with above values
@@ -102,9 +104,13 @@ async function viewAllDepartments() {
   mainPrompt();
 };
 
-//Displays Employees and deletes selected
-//async function deleteRole() {
-  //const employees = await db.viewEmployees
+//Adds new department based on user input
+async function addNewDepartment() {
+  const {name} = await inquirer.prompt(prompts.addDepartment);
 
-//}
+  db.addDepartment(name);
+
+  mainPrompt();
+};
+
 
