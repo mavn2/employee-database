@@ -68,6 +68,16 @@ class DB {
     )
   }
   //Update employee role
+  updateEmployeeRole(role, id){
+      `
+    UPDATE
+      employees
+    SET
+      role_id = ${role}
+    WHERE
+      id = ${id} 
+    `
+  }
   //View employees by manager/update manager
   //Delete employee
 
