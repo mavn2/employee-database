@@ -15,6 +15,10 @@ module.exports = {
           value: 'a_employees'
         },
         {
+          name: `Update Employee's Role`,
+          value: 'u_employees'
+        },
+        {
           name: 'View All Roles',
           value: 'v_roles'
         },
@@ -57,6 +61,21 @@ module.exports = {
         message: `Who is this employee's manager?`,
         name: 'manager',
         choices: employeeData
+      }
+    ];
+  },
+
+  updateEmployeeRole: function(employeeData, roleData){
+    return [
+      {
+        type: 'list',
+        message: 'Which employee would you like to update?',
+        choices: employeeData
+      },
+      {
+        type: 'list',
+        message: 'Which role would you like to assign them?',
+        choices: roleData
       }
     ];
   },
