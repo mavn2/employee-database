@@ -29,6 +29,9 @@ async function mainPrompt() {
     case 'v_roles':
       viewAllRoles();
       break;
+    case 'a_roles':
+      addNewRole();
+      break;
     case 'v_departments':
       viewAllDepartments()
       break;
@@ -90,6 +93,16 @@ async function viewAllRoles() {
 
   console.log('\n');
   console.table(roles);
+
+  mainPrompt();
+};
+
+//Adds new role based on user input
+async function addNewRole(){
+  const departmentData = await db.viewDepartments();
+
+  const {name, salary, department} = await inquirer.prompt(prompts.addRole(departmentData));
+  console.log(salary, department);
 
   mainPrompt();
 };

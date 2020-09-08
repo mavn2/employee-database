@@ -7,20 +7,24 @@ module.exports = {
       message: 'What would you like to do?',
       choices: [
         {
-        name: 'View All Employees',
-        value: 'v_employees'
+          name: 'View All Employees',
+          value: 'v_employees'
         },
         {
           name: 'Add Employee',
           value: 'a_employees'
         },
         {
-        name: 'View All Roles',
-        value: 'v_roles'
+          name: 'View All Roles',
+          value: 'v_roles'
         },
         {
-        name: 'View All Departments',
-        value: 'v_departments'
+          name: 'Add Role',
+          value: 'a_roles'
+        },
+        {
+          name: 'View All Departments',
+          value: 'v_departments'
         },
         {
           name: 'Add Department',
@@ -56,6 +60,41 @@ module.exports = {
       }
     ];
   },
+
+  addRole: function (departmentData) {
+    return [
+      {
+        type: 'input',
+        message: `What is this role's name?`,
+        name: 'name'
+      },
+      {
+        type: 'input',
+        message: `What is this role's salary?`,
+        name: 'salary',
+        validate: value => {
+          var valid = !isNaN(parseFloat(value));
+          return valid || 'Please enter a number'
+        },
+        filter: value => {
+          var res = ''
+          for(i = 0; i < value.length; i++){
+            if(!isNaN(Number(value[i]))){
+              res += value.slice(i, i+1)
+            };
+          };
+          return Number(res)
+        },
+      },
+      {
+        type: 'list',
+        message: 'Which department does this role work in?',
+        name: 'department',
+        choices: departmentData
+      }
+    ];
+  },
+
   addDepartment:  [
     {
       type: 'input',
@@ -63,5 +102,4 @@ module.exports = {
       name: 'name'
     }
   ],
-
 };
