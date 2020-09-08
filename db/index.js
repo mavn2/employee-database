@@ -38,7 +38,7 @@ class DB {
       INSERT INTO employees 
       (first_name, last_name, role_id, manager_id)
       VALUES
-      ('A.', 'Test', 1, null);
+      ('${first}', '${second}', ${role}, ${manager});
       `
     )
   }
