@@ -15,7 +15,32 @@ class DB {
   //Return formatted list of employees
   viewEmployees() {
     return this.connection.query(
-      'SELECT * FROM employees;'
+        `
+      SELECT
+        employees.first_name AS 'First Name',
+        employees.last_name AS 'Last Name',
+        roles.title AS Title,
+        departments.name AS Department,
+        CONCAT (
+            B.first_name, 
+            ' ', 
+            B.last_name
+        ) AS Manager
+      FROM 
+        employees
+      LEFT JOIN
+        roles 
+        ON 
+        employees.role_id = roles.id
+      LEFT JOIN
+        departments 
+        ON 
+        roles.department_id = departments.id
+      LEFT JOIN
+        employees B 
+        On 
+        employees.manager_id = B.id;
+      `
     );
   }
 

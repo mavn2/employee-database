@@ -6,8 +6,6 @@ const inquirer = require('inquirer');
 //Required files/folders
 const db = require('./db');
 const prompts = require('./prompts');
-const { addEmployee } = require('./db');
-const e = require('express');
 //require ('console.table');
 
 //Runs cli on launch
