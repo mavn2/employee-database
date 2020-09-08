@@ -109,7 +109,9 @@ async function addNewRole(){
   );
 
   const {name, salary, department} = await inquirer.prompt(prompts.addRole(departmentData));
-
+  
+  db.addRole(name, salary, department);
+  
   mainPrompt();
 };
 
