@@ -38,7 +38,7 @@ module.exports = {
     }
   ],
 
-  addEmployee: function (roleData, employeeData){
+  addEmployee: function(roleData, employeeData) {
     return [
       {
         type: 'input',
@@ -65,16 +65,18 @@ module.exports = {
     ];
   },
 
-  updateEmployeeRole: function(employeeData, roleData){
+  updateEmployeeRole: function(employeeData, roleData) {
     return [
       {
         type: 'list',
         message: 'Which employee would you like to update?',
+        name: 'employee',
         choices: employeeData
       },
       {
         type: 'list',
         message: 'Which role would you like to assign them?',
+        name: 'role',
         choices: roleData
       }
     ];
@@ -120,5 +122,5 @@ module.exports = {
       message: `What is the department's name?`,
       name: 'name'
     }
-  ],
+  ]
 };

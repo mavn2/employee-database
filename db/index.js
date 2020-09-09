@@ -65,18 +65,21 @@ class DB {
       VALUES
         ('${first}', '${second}', ${role}, ${manager});
       `
-    )
+    );
   }
+  
   //Update employee role
   updateEmployeeRole(role, id){
-      `
-    UPDATE
-      employees
-    SET
-      role_id = ${role}
-    WHERE
-      id = ${id} 
+    return this.connection.query(
+        `
+      UPDATE
+        employees
+      SET
+        role_id = ${role}
+      WHERE
+        id = ${id};
     `
+    );
   }
   //View employees by manager/update manager
   //Delete employee

@@ -24,6 +24,9 @@ async function mainPrompt() {
     case 'a_employees':
       addNewEmployee();
       break;
+    case 'u_employees':
+      updateEmployeeRole();
+      break;
     case 'v_roles':
       viewAllRoles();
       break;
@@ -84,6 +87,35 @@ async function addNewEmployee(){
 
   mainPrompt();
 };
+
+async function updateEmployeeRole(){
+  const employees = await db.getEmployees()
+  const roles = await db.getRoles();
+
+  const roleData = await roles.map(
+    element => {
+      return element = {
+        name: `${element.title}`,
+        value: element.id
+      };
+    }
+  );
+  
+  const employeeData = await employees.map( 
+    element => {
+      return element = {
+        name: `${element.first_name} ${element.last_name}`,
+        value: element.id
+      }; 
+    }
+  );
+ 
+  const {employee, role} = await inquirer.prompt(prompts.updateEmployeeRole(employeeData, roleData));
+  
+  db.updateEmployeeRole(role, employee);
+
+  mainPrompt();
+}
 
 //Searches db, then displays all roles
 async function viewAllRoles() {
