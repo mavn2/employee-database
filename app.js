@@ -58,23 +58,8 @@ async function addNewEmployee(){
   const roles = await db.getRoles();
 
   //Converts returned data for use with inquirer
-  const roleData = await roles.map(
-    element => {
-      return element = {
-        name: `${element.title}`,
-        value: element.id
-      };
-    }
-  );
-  
-  const employeeData = await employees.map( 
-    element => {
-      return element = {
-        name: `${element.first_name} ${element.last_name}`,
-        value: element.id
-      }; 
-    }
-  );
+  const roleData = await convertRoles(roles)
+  const employeeData = await convertEmployees(employees)
   
   //Adds 'none' option for manager
   employeeData.unshift({name: 'None', value: null});
@@ -92,24 +77,9 @@ async function updateEmployeeRole(){
   const employees = await db.getEmployees()
   const roles = await db.getRoles();
 
-  const roleData = await roles.map(
-    element => {
-      return element = {
-        name: `${element.title}`,
-        value: element.id
-      };
-    }
-  );
-  
-  const employeeData = await employees.map( 
-    element => {
-      return element = {
-        name: `${element.first_name} ${element.last_name}`,
-        value: element.id
-      }; 
-    }
-  );
- 
+  const roleData = await convertRoles(roles);
+  const employeeData = await convertEmployees(employees)
+
   const {employee, role} = await inquirer.prompt(prompts.updateEmployeeRole(employeeData, roleData));
   
   db.updateEmployeeRole(role, employee);
@@ -131,12 +101,7 @@ async function viewAllRoles() {
 async function addNewRole(){
   const deps = await db.getDepartments();
 
-  const departmentData = await deps.map(
-    element => element = {
-      name: `${element.name}`,
-      value: element.id
-    }
-  );
+  const departmentData = await convertDepartments(deps)
 
   const {name, salary, department} = await inquirer.prompt(prompts.addRole(departmentData));
   
@@ -162,4 +127,33 @@ async function addNewDepartment() {
   db.addDepartment(name);
 
   mainPrompt();
+};
+
+//Functions for each data table, converting arrays of objects returned from SQL to arrays of objects formatted as inquirer list choices
+
+function convertEmployees(employees){
+  return employees.map( 
+    element => element = {
+      name: `${element.first_name} ${element.last_name}`,
+      value: element.id
+    }
+  );
+};
+
+function convertRoles(roles){
+  return roles.map(
+    element => element = {
+        name: `${element.title}`,
+        value: element.id
+      }
+  );
+};
+
+function convertDepartments(deps){
+  return deps.map(
+    element => element = {
+      name: `${element.name}`,
+      value: element.id
+    }
+  );
 };
