@@ -6,7 +6,7 @@ const inquirer = require('inquirer');
 //Required files/folders
 const db = require('./db');
 const prompts = require('./prompts');
-//require ('console.table');
+require ('console.table');
 
 //Runs cli on launch
 mainPrompt();
