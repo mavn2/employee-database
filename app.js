@@ -2,13 +2,17 @@
 
 //Required modules
 const inquirer = require('inquirer');
+const logo = require ('asciiart-logo')
+require ('console.table');
+
 
 //Required files/folders
 const db = require('./db');
 const prompts = require('./prompts');
-require ('console.table');
+const config = require('./package.json')
 
-//Runs cli on launch
+//Displays logo, then runs cli on launch
+console.log(logo(config).render())
 mainPrompt();
 
 //Displays main menu
