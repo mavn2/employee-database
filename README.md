@@ -5,7 +5,7 @@
 I like the name because it's easy to remember and it (soft) rhymes three times, but EDB is more employee management tool than simple database.
 A SQL schema and seed data are included, but the meat of the application is a simple command line interface written in JavaScript utilizing NodeJS.
 Selected a command from the main menu prompts the user with a series of questions and saves their answers to be passed into the database, saving the user the burden of handling SQL queries themselves.
-While other applications might be able to perform similar functions, EDB offers a lightweight application and nostalgic aesthetic.
+While other programs might be able to perform similar functions, EDB offers a lightweight application and nostalgic aesthetic.
 
 ## Table of Contents
 
@@ -29,9 +29,13 @@ Insert a password of your own on line 12 of the connection.js file in the db fol
 You're ready to run the application (using node) from the terminal!
 
 ## Usage
+![The app launched from the terminal](./assets/1.png)
 
 Follow the prompts as instructed, and everything should work out right.
-Please note that for the sake of user convenience and to encourage workplace mindfulness, no confirmation prompt is offered for any query.
+
+![The app in use, demonstrating text entry and a list of items](./assets/2.png)
+
+Please note that for the sake of user convenience and to encourage workplace mindfulness, no confirmation prompt is offered after any query.
 
 ## Contributing
 
@@ -44,6 +48,10 @@ Run the included seeds.sql file after initializing the DB if you require a small
 ## Questions
 
 If you have any further questions, you can contact me at maxvnicolai@gmail.com. If you'd like to connect with me on GitHub, my user profile is [github.com/mavn2](github.com/mavn2).
+
+## Credits
+
+As ever, thanks to my peers and teachers at the UW Coding Boot-camp and the developers whose work this app is built on.
 
 ## License
 
